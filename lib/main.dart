@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 209, 209, 46)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 104, 138, 239)),
       ),
-      home: const MyHomePage(title: 'hhhhhh Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'f'),
     );
   }
 }
@@ -26,38 +26,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    final List<String> entries = <String>['a','b','c','d'];
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text("ListView Demo"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+      body: ListView.builder(
+        itemCount: entries.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            color: Colors.white,
+            child: ListTile(
+              title: Text('제목: ${entries[index]}'),
+              subtitle: Text('링크: ${entries[index]}'),
             ),
-          ],
-        ),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
